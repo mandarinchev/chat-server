@@ -30,17 +30,17 @@ public class ChannelView extends VerticalLayout implements HasUrlParameter<Strin
 
     private final ChatService chatService;
     private final MessageList messageList;
-    private final AuthenticationContext authenticationContext;
 
     private String channelId;
     private String channelName;
+    private final String currentUserName;
 
     private static final int HISTORY_SIZE = 20;
     private final LimitedSortedAppendOnlyList<Message> receivedMessages;
 
     public ChannelView(ChatService chatService, AuthenticationContext authenticationContext) {
         this.chatService = chatService;
-        this.authenticationContext = authenticationContext;
+        this.currentUserName = authenticationContext.getPrincipalName().orElseThrow();
         this.receivedMessages = new LimitedSortedAppendOnlyList<>(
                 HISTORY_SIZE,
                 Comparator.comparing(Message::sequenceNumber)
@@ -96,6 +96,15 @@ public class ChannelView extends VerticalLayout implements HasUrlParameter<Strin
         item.setText(message.message());
         item.setTime(message.timestamp());
         item.setUserName(message.author());
+
+
+        item.setUserColorIndex(Math.abs(message.author().hashCode() % 7));
+        item.addClassNames(LumoUtility.Margin.SMALL, LumoUtility.BorderRadius.MEDIUM);
+
+        if (message.author().equals(currentUserName)) {
+            item.addClassNames(LumoUtility.Background.CONTRAST_5);
+        }
+
         return item;
     }
 
