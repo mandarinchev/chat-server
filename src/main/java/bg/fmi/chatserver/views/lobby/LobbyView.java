@@ -49,7 +49,7 @@ public class LobbyView extends VerticalLayout {
         this.addChannelButton.setDisableOnClick(true);
         this.addChannelButton.addClickListener(e -> addChannel());
 
-        if (authenticationContext.hasRole(Roles.ADMIN)) {
+        if (this.authenticationContext.hasRole(Roles.ADMIN)) {
             HorizontalLayout toolbar = new HorizontalLayout(this.channelNameField, this.addChannelButton);
             toolbar.setWidthFull();
             toolbar.expand(this.channelNameField);
