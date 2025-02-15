@@ -24,7 +24,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setJustifyContentMode(JustifyContentMode.CENTER);
 
         this.loginForm.setAction("login");
-        add(new H1("Unified Chat"));
+        add(new H1("Chat-Mat"));
         add(new Div("Available users: 'alice', 'bob', or 'admin'. Password for all is 'password'."));
         add(this.loginForm);
     }

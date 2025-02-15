@@ -55,7 +55,7 @@ public class MainLayout extends AppLayout {
     }
 
     private void addDrawerContent() {
-        Span appName = new Span("Unified Chat");
+        Span appName = new Span("Chat-Mat");
         appName.addClassNames(LumoUtility.AlignItems.CENTER,
                 LumoUtility.Display.FLEX,
                 LumoUtility.FontSize.LARGE,
